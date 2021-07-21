@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	ul {
+		list-style: none;
+		overflow:auto;
+	}
+	ul li {
+		width: calc ( 100% - 20px );
+		overflow: auto;
+		padding: 10px;
+		margin: 5px;
+		box-sizing:border-box;
+		border: 1px solid #CCC;
+	}
+	ul li:hover
+	{
+		-webkit-box-shadow: -4px -4px 8px -8px rgba(0,0,0,0.75);
+		-moz-box-shadow: -4px -4px 8px -8px rgba(0,0,0,0.75);
+		box-shadow: -4px -4px 8px -8px rgba(0,0,0,0.75);
+	}
+	span.image {
+		height: 130px;
+		width: 130px;
+		overflow: hidden;
+		float: left;
+		border:1px solid #CCC;
+	}
+	.rightSec
+	{
+		height:130px;
+		float:left;
+		padding: 0px 10px 0px 10px;
+	}
+	.rightSec div
+	{
+		padding-bottom:10px;
+	}
+	
+	
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	<script id="user_template" type="text/x-handlebars-template">
+		<div>
+			<ul>
+				{{#each data}}
+					<li>
+						  <span class="image"><img src="{{avatar}}" onerror="loadDummyImage(this)"></span>
+							<div class="rightSec">
+							  <div class="name">{{#if name}}<b>Name</b> :{{name}} {{/if}}</div>
+							  <div class="id">{{#if id}}<b>ID</b> : {{id}}{{/if}}</div>
+							  <div class="created"> {{#if createdAt}}<b>Date Created </b> : {{print_date createdAt}} {{/if}}
+							</div>
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	</script>
+	<script type="text/javascript">
+	    
+		function loaduserdetails()
+		{
+			var httpRequest = new XMLHttpRequest();
+			httpRequest.onreadystatechange = function() {
+                		 
+				if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+				    var user_template= document.getElementById("user_template").innerHTML;
+					var user_section = Handlebars.compile(user_template);
+					var response = { data: JSON.parse(httpRequest.responseText) };
+					var html_content = user_section(response);
+				    document.getElementById("handlebarCont").innerHTML = html_content;
+				}
+				else if(httpRequest.status != 200) {
+					console.log("Asynchrouns request got failed.");
+				}
+		   }
+		   httpRequest.open("GET", "https://5dc588200bbd050014fb8ae1.mockapi.io/assessment",true);
+		   httpRequest.send();
+		   
+	   }
+	   
+	   document.addEventListener('DOMContentLoaded', function(event) {
+	    loaduserdetails();
+       });
+		
+	    Handlebars.registerHelper('print_date', function (dateVal,options) {
+			var date = new Date(dateVal);
+			return date.getMonth()+1 +"-"+date.getDate()+"-"+date.getFullYear()+ " "+date.getHours()+":"+date.getMinutes()+":"+ date.getSeconds();
+        })
+	</script>
+
+</head>
+<body>
+	<div id="handlebarCont"></div>
+</body>
+</html>

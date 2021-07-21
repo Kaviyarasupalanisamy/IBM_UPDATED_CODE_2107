@@ -1,0 +1,178 @@
+/* Basic Style */
+/*html body input, html body button {
+    outline: none;
+  }*/
+/* Heading */
+/* New Task */
+/* Task list */
+/* Completed */
+/* Edit Task */
+html {
+	body {
+		background: #ffffff;
+		color: #333;
+		font-family: Lato, sans-serif;
+		.container {
+			display: block;
+			margin: 100px auto 0;
+		}
+		ul {
+			margin: 0px;
+			padding: 0;
+			li {
+				input[type=text] {
+					display: none;
+				}
+			}
+			li.editMode {
+				input[type=text] {
+					display: block;
+				}
+				label {
+					display: none;
+				}
+			}
+		}
+		li {
+			* {
+				float: left;
+			}
+			clear: both;
+			list-style: none;
+			overflow: hidden;
+			padding: 20px 0px;
+			border-bottom: 1px solid #eee;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			>input[type="checkbox"] {
+				margin: 0 10px;
+				position: relative;
+				top: 15px;
+			}
+			>label {
+				font-size: 18px;
+				line-height: 40px;
+				width: 237px;
+				padding: 0 0 0 11px;
+			}
+			>input[type="text"] {
+				width: 226px;
+			}
+			>.delete {
+				&:hover {
+					color: #CF2323;
+				}
+			}
+		}
+		h3 {
+			clear: both;
+			list-style: none;
+			color: #333333;
+			font-weight: 700;
+			font-size: 15px;
+			border-bottom: 2px solid #333;
+			padding: 30px 0 10px;
+			margin: 0px;
+			text-transform: uppercase;
+		}
+		button {
+			background: none;
+			border: 0px;
+			color: #888888;
+			font-size: 15px;
+			width: 60px;
+			margin: 10px 0 0;
+			font-family: Lato, sans-serif;
+			cursor: pointer;
+			&:hover {
+				color: #333;
+			}
+		}
+		label[for='new-task'] {
+			color: #333333;
+			font-weight: 700;
+			font-size: 15px;
+			border-bottom: 2px solid #333;
+			padding: 30px 0 10px;
+			margin: 0px;
+			text-transform: uppercase;
+		}
+		input[type="text"] {
+			margin: 0;
+			font-size: 18px;
+			line-height: 18px;
+			height: 18px;
+			padding: 10px;
+			border: 1px solid #ddd;
+			background: #fff;
+			border-radius: 6px;
+			font-family: Lato, sans-serif;
+			color: #888;
+			&:focus {
+				color: #333;
+			}
+		}
+		input#new-task {
+			float: left;
+			width: 318px;
+		}
+		p {
+			>button {
+				&:hover {
+					color: #0FC57C;
+				}
+			}
+		}
+		#completed-tasks {
+			label {
+				text-decoration: line-through;
+				color: #888;
+			}
+		}
+	}
+}
+#todolistForm {
+	.error {
+		border: 1px solid red;
+	}
+}
+@media only screen and (max-width: 375px) {
+	html {
+		body {
+			.container {
+				width: calc( 100% - 20px);
+			}
+			li {
+				justify-content: flex-start;
+			}
+			input#new-task {
+				width: 100%;
+				box-sizing: border-box;
+			}
+			input[type="text"] {
+				height: 35px;
+			}
+		}
+	}
+}
+@media only screen and (min-width: 375px) {
+	html {
+		body {
+			.container {
+				width: calc( 100% - 40px);
+				margin: auto auto;
+				max-width: 600px;
+			}
+			li {
+				justify-content: flex-start;
+				>label {
+					width: 272px;
+				}
+				>input[type="text"] {
+					width: 272px;
+				}
+			}
+		}
+	}
+}

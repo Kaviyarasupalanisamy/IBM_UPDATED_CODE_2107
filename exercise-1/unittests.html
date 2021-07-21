@@ -1,0 +1,31 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.css">
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine-html.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/boot.min.js"></script>
+
+<script type="text/javascript">
+describe("endpoint", () => {
+
+    let testData = {};
+
+    beforeEach(done => {
+        fetch("https://5dc588200bbd050014fb8ae1.mockapi.io/assessment")
+            .then(response => response.json())
+            .then(data => {
+                testData = data;
+                done();
+            });
+    });
+
+    it("should get data from endpoint", () => {
+        expect(testData[0].name).toBeDefined();
+    });
+
+});
+</script>
+
+</head>
+</html>
